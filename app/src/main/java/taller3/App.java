@@ -21,7 +21,51 @@ public class App {
     * hay un error inesperado, deberá mostrar
     * el mensaje: "Ocurrió un error inesperado".
     */
-
+     
+    
+        public static String Escribir_asc(int a, int b, int c) {
+            try {
+                if (a == b || b == c || a == c) {
+                    return "Error: La función no considera números iguales";
+                }
+    
+                int max, mid, min;
+    
+                if (a > b && a > c) {
+                    max = a;
+                    if (b > c) {
+                        mid = b;
+                        min = c;
+                    } else {
+                        mid = c;
+                        min = b;
+                    }
+                } else if (b > a && b > c) {
+                    max = b;
+                    if (a > c) {
+                        mid = a;
+                        min = c;
+                    } else {
+                        mid = c;
+                        min = a;
+                    }
+                } else {
+                    max = c;
+                    if (a > b) {
+                        mid = a;
+                        min = b;
+                    } else {
+                        mid = b;
+                        min = a;
+                    }
+                }
+    
+                return max + " - " + mid + " - " + min;
+            } catch (Exception e) {
+                return "Ocurrió un error inesperado";
+            }
+        }
+    
 
 
    /*
@@ -33,7 +77,21 @@ public class App {
     * 
     */
 
+    public static byte Obtener_cifras(int numero) {
+      try {
 
+         final int n_max=50000, n_min=0;
+
+
+          if (numero < n_min|| numero > n_max) {
+              return 0; // número fuera de rango
+          }
+          String strNumero = String.valueOf(numero);
+          return (byte) strNumero.length();
+      } catch (Exception e) {
+          return -1; // error inesperado
+      }
+   }
 
    /*
     * 3. Construya un algoritmo e implemente la función en Java Clasificar_char que
@@ -49,7 +107,21 @@ public class App {
     * 
     */
 
-
+   public static String Clasificar_char(char caracter) {
+   try {
+       if (Character.isLetter(caracter)) {
+           return "ES LETRA";
+       } else if (Character.isDigit(caracter)) {
+           return "ES NUMERO";
+       } else {
+           return "ESPECIAL";
+       }
+   } 
+   
+   catch (Exception e) {
+       return "Ocurrió un error inesperado";
+   }
+  }
 
    /*
     * 
@@ -69,6 +141,25 @@ public class App {
     * 
     * 
     */
+    public static String Hallar_division_exacta(int num1, int num2) {
+      try {
+
+         final int cero=0;
+
+
+          if (num1 <= cero || num2 <= cero) {
+              return "NO SE ADMITE CERO O NEGATIVOS";
+          }
+          int resto = num1 % num2;
+          if (resto == cero) {
+              return "DIVISION EXACTA";
+          } else {
+              return "DIVISION NO EXACTA";
+          }
+      } catch (Exception e) {
+          return "Ocurrió un error inesperado";
+      }
+  }
 
    
 
@@ -97,7 +188,32 @@ public class App {
     * "Ocurrió un error inesperado".
     */
 
-
+    
+      public static String Consultar_hab(byte numCamas, String tipo) {
+          try {
+              if (numCamas < 1 || numCamas > 3) {
+                  return "DATOS NO VÁLIDOS";
+              }
+              if (!tipo.equals("AA") && !tipo.equals("VE")) {
+                  return "DATOS NO VÁLIDOS";
+              }
+              String habitaciones = "";
+              if (numCamas == 1 && tipo.equals("VE")) {
+                  habitaciones = "102";
+              } else if (numCamas == 2 && tipo.equals("AA")) {
+                  habitaciones = "101|301";
+              } else if (numCamas == 2 && tipo.equals("VE")) {
+                  habitaciones = "202";
+              } else if (numCamas == 3 && tipo.equals("AA")) {
+                  habitaciones = "201";
+              }
+              return habitaciones;
+          } catch (Exception e) {
+              return "Ocurrió un error inesperado";
+          }
+      }
+  
+  
    
    /*
     * 
@@ -114,7 +230,23 @@ public class App {
     * "Ocurrió un error inesperado".
     */
 
-
+    public static String Obtener_obs(boolean plato1, boolean plato2, boolean plato3) {
+      try {
+          if (!plato1 && !plato2 && !plato3) {
+              return "PLATOS NO VÁLIDOS";
+          } else if (plato1 && plato2 && plato3) {
+              return "BEBIDA Y POSTRE";
+          } else if (plato1 && plato2) {
+              return "BEBIDA";
+          } else if (plato1) {
+              return "POSTRE";
+          } else {
+              return "NO HAY OBSEQUIO";
+          }
+      } catch (Exception e) {
+          return "Ocurrió un error inesperado";
+      }
+  }
 
 
 
@@ -141,4 +273,28 @@ public class App {
     * "Ocurrió un error inesperado".
     * 
     */
+   public static String Conocer_invitacion(String color) {
+      try {
+          switch (color.toLowerCase()) {
+           case "verde":
+               return "Invita a las cervezas";
+           case "azul":
+               return "Invita a la pizza";
+           case "rojo":
+               return "Invita al postre";
+           case "amarillo":
+               return "Paga el parqueadero de todos";
+           case "blanco":
+           case "negro":
+               return "Vaya y disfrute";
+           default:
+               return "Error en el color";
+       }
+   } 
+   
+   catch (Exception e) {
+       return "Ocurrió un error inesperado";
+   }
+}
 
+}
